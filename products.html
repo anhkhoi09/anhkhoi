@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tất cả sản phẩm - AKA Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <a href="index.html">
+                <img src="image/logo2.jpg" alt="logo">
+            </a>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">Trang chủ</a>
+            <a href="index.html#category">Danh mục</a>
+            <div class="nav-dropdown">
+                <a href="index.html#xe" class="active">Sản phẩm <span class="caret">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="index.html#xe">Xe mô hình</a>
+                    <a href="index.html#diorama">DIORAMA</a>
+                    <a href="products.html">Tất cả sản phẩm</a>
+                </div>
+            </div>
+            <a href="index.html#about">Giới thiệu</a>
+            <a href="index.html#contact">Liên hệ</a>
+        </nav>
+
+        <div class="header-right">
+
+            <div class="search">
+                <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+                <button id="search-btn">🔍</button>
+            </div>
+
+            <a href="cart.html" class="cart">
+                🛒
+            </a>
+
+            <span id="user-greeting"></span>
+
+            <a href="login.html" class="login">Đăng nhập</a>
+
+        </div>
+
+    </header>
+
+
+    <!-- TIÊU ĐỀ TRANG -->
+    <section class="page-hero">
+        <p class="page-tag">BỘ SƯU TẬP AKA SHOP</p>
+        <h1>TẤT CẢ SẢN PHẨM</h1>
+        <p class="page-count"><strong id="result-count">0</strong> sản phẩm</p>
+    </section>
+
+
+    <!-- NỘI DUNG -->
+    <main class="collection">
+
+        <!-- NÚT BỘ LỌC (MOBILE) -->
+        <button class="filter-toggle" id="filter-toggle" type="button">☰ Bộ lọc</button>
+
+        <!-- SIDEBAR LỌC -->
+        <aside class="filter-panel" id="filter-panel">
+
+            <div class="filter-head">
+                <h2>Bộ lọc</h2>
+                <button type="button" class="filter-close" id="filter-close">✕</button>
+            </div>
+
+            <div class="filter-group">
+                <h3>Danh mục</h3>
+                <label class="check"><input type="checkbox" name="cat" value="xe"><span>Xe mô hình</span></label>
+                <label class="check"><input type="checkbox" name="cat" value="diorama"><span>DIORAMA</span></label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Thương hiệu</h3>
+                <label class="check"><input type="checkbox" name="brand" value="MINI GT"><span>MINI GT</span></label>
+                <label class="check"><input type="checkbox" name="brand" value="SHOU CANG JIA"><span>SHOU CANG JIA</span></label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Mức giá</h3>
+                <label class="check"><input type="checkbox" name="price" value="0-350000"><span>Dưới 350.000đ</span></label>
+                <label class="check"><input type="checkbox" name="price" value="350000-500000"><span>350.000đ – 500.000đ</span></label>
+                <label class="check"><input type="checkbox" name="price" value="500000-99999999"><span>Trên 500.000đ</span></label>
+            </div>
+
+            <div class="filter-actions">
+                <button type="button" class="btn-reset" id="filter-reset">Xoá lọc</button>
+                <button type="button" class="btn-apply" id="filter-apply">Áp dụng</button>
+            </div>
+
+        </aside>
+        <div class="filter-overlay" id="filter-overlay"></div>
+
+
+        <!-- DANH SÁCH SẢN PHẨM -->
+        <section class="collection-main">
+
+            <div class="toolbar">
+                <p class="toolbar-count">Hiển thị <strong id="shown-count">0</strong> sản phẩm</p>
+
+                <div class="sort">
+                    <label for="sort-select">Sắp xếp:</label>
+                    <select id="sort-select">
+                        <option value="default">Nổi bật</option>
+                        <option value="price-asc">Giá: thấp đến cao</option>
+                        <option value="price-desc">Giá: cao đến thấp</option>
+                        <option value="name-asc">Tên: A → Z</option>
+                        <option value="name-desc">Tên: Z → A</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-container" id="product-grid">
+
+                <!-- SP 1 -->
+                <div class="product-card" data-cat="xe" data-brand="MINI GT" data-price="495000" data-old="550000">
+                    <div class="product-image">
+                        <span class="sale">-10%</span>
+                        <img src="https://cdn.hstatic.net/products/200001046178/0f97e1ce-f20e-4f5d-97bb-1c5674d4cbe8_371ce6eee76340b6aad6ba6e6385ccce_master.jpg" alt="Lamborghini Huracan GT3 EVO2">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">MINI GT</p>
+                        <h3>Lamborghini Huracan GT3 EVO2</h3>
+                        <div class="price">
+                            <span class="new-price">495.000đ</span>
+                            <span class="old-price">550.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <!-- SP 2 -->
+                <div class="product-card" data-cat="xe" data-brand="MINI GT" data-price="340000" data-old="400000">
+                    <div class="product-image">
+                        <span class="sale">-15%</span>
+                        <img src="https://cdn.hstatic.net/products/200001046178/ec20760d-3d65-4bc7-a7bd-f71a2065e414_66d47687c280473bb240a0c63240295a_master.jpg" alt="MAZDA RX-7 LB-SUPER SILHOUETTE">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">MINI GT</p>
+                        <h3>MAZDA RX-7 LB-SUPER SILHOUETTE</h3>
+                        <div class="price">
+                            <span class="new-price">340.000đ</span>
+                            <span class="old-price">400.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                                <div class="product-card" data-cat="xe" data-brand="MINI GT" data-price="599000">
+                    <div class="product-image">
+                        <span class="new">NEW</span>
+                        <img src="https://cdn.hstatic.net/products/200001046178/187dcdfc-9704-40da-8bea-a1b7f92218d4_c0cfb1e036174b7b9f96dd467e5a60d1_master.jpg" alt="Porsche 911 GT3 Rexy Skeleton">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">MINI GT</p>
+                        <h3>Porsche 911 GT3 Rexy Skeleton</h3>
+                        <div class="price">
+                            <span class="new-price">599.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-cat="xe" data-brand="MINI GT" data-price="349000">
+                    <div class="product-image">
+                        <img src="https://cdn.hstatic.net/products/200001046178/8b5e2fbd-9836-4be6-b90d-ba67d108423c_d48cab00e14448bbb9e5761ef08a11da_master.jpg" alt="Bugatti Bolide Red">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">MINI GT</p>
+                        <h3>Bugatti Bolide Red</h3>
+                        <div class="price">
+                            <span class="new-price">349.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-cat="diorama" data-brand="SHOU CANG JIA" data-price="499000">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/61L1y9ocO1L.jpg" alt="7-ELEVEN CONVENIENCE STORE">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">SHOU CANG JIA</p>
+                        <h3>7-ELEVEN CONVENIENCE STORE</h3>
+                        <div class="price">
+                            <span class="new-price">499.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-cat="diorama" data-brand="SHOU CANG JIA" data-price="399000">
+                    <div class="product-image">
+                        <img src="https://down-vn.img.susercontent.com/file/sg-11134201-82623-mje6nnli9xj502" alt="LAWSON CONVENIENCE STORE">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">SHOU CANG JIA</p>
+                        <h3>LAWSON CONVENIENCE STORE</h3>
+                        <div class="price">
+                            <span class="new-price">399.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-cat="diorama" data-brand="SHOU CANG JIA" data-price="499000">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/71ZIDx1u2EL.jpg" alt="JAPANESE STYLE RAMP">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">SHOU CANG JIA</p>
+                        <h3>JAPANESE STYLE RAMP</h3>
+                        <div class="price">
+                            <span class="new-price">499.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-cat="diorama" data-brand="SHOU CANG JIA" data-price="449000">
+                    <div class="product-image">
+                        <img src="https://i.ebayimg.com/00/s/ODAwWDgwMA==/z/qR8AAeSwENFpx53Q/$_10.PNG?set_id=880000500F" alt="SAFEWORK DOUBLE-DECK PARKING WORKSHOP">
+                    </div>
+                    <div class="product-info">
+                        <p class="brand">SHOU CANG JIA</p>
+                        <h3>SAFEWORK DOUBLE-DECK PARKING WORKSHOP</h3>
+                        <div class="price">
+                            <span class="new-price">449.000đ</span>
+                        </div>
+                        <button class="add-cart">Thêm vào giỏ</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="empty-msg" id="empty-msg">Không có sản phẩm nào phù hợp với bộ lọc.</p>
+
+        </section>
+
+    </main>
+
+
+    <!-- SERVICE -->
+    <section class="service">
+        <div class="service-item">
+            <div class="service-icon">🚚</div>
+            <div><h3>Giao hàng toàn quốc</h3><p>Đóng gói cẩn thận</p></div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon">✓</div>
+            <div><h3>Sản phẩm chính hãng</h3><p>Cam kết chất lượng</p></div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon">↻</div>
+            <div><h3>Đổi trả dễ dàng</h3><p>Hỗ trợ nhanh chóng</p></div>
+        </div>
+        <div class="service-item">
+            <div class="service-icon">♡</div>
+            <div><h3>Hỗ trợ khách hàng</h3><p>Tư vấn nhiệt tình</p></div>
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h2 class="footer-logo">AKA Shop</h2>
+                <p>Cửa hàng xe mô hình dành cho những người đam mê tốc độ và sưu tầm.</p>
+                <div class="social">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>DANH MỤC</h3>
+                <a href="index.html#xe">Xe mô hình</a>
+                <a href="index.html#diorama">DIORAMA</a>
+                <a href="products.html">Tất cả sản phẩm</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>HỖ TRỢ</h3>
+                <a href="#">Chính sách giao hàng</a>
+                <a href="#">Chính sách đổi trả</a>
+                <a href="#">Chính sách bảo mật</a>
+                <a href="#">Điều khoản sử dụng</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>LIÊN HỆ</h3>
+                <p>📍 TP. Hồ Chí Minh</p>
+                <p>☎ 0123 456 789</p>
+                <p>✉ akashop@gmail.com</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 AKA Shop. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+    <a href="#" class="back-to-top">↑</a>
+
+    <script src="product-data.js"></script>
+    <script src="mini-gt-products.js"></script>
+    <script src="cart.js"></script>
+    <script type="module" src="auth-state.js"></script>
+    <script src="products.js"></script>
+    <script src="quick-view.js"></script>
+</body>
+</html>

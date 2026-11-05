@@ -130,29 +130,40 @@ function removeItem(id) {
       transform:translateX(100%);transition:transform .3s ease;
       display:flex;flex-direction:column;font-family:inherit}
     #aka-cart-drawer.open{transform:translateX(0)}
-    #aka-cart-header{padding:18px 20px;border-bottom:1px solid #eee;
+    #aka-cart-header{padding:20px 24px;border-bottom:1px solid #eee;
       display:flex;justify-content:space-between;align-items:center}
-    #aka-cart-header h3{margin:0;font-size:17px;color:#c0392b}
-    #aka-cart-close{background:none;border:none;font-size:20px;cursor:pointer;color:#888}
-    #aka-cart-items{flex:1;overflow-y:auto;padding:10px 16px}
+    #aka-cart-header h3{margin:0;font-size:18px;font-weight:700;color:#111}
+    #aka-cart-close{background:none;border:none;font-size:20px;cursor:pointer;color:#333;
+      line-height:1;padding:4px}
+    #aka-cart-close:hover{color:#c0392b}
+    #aka-cart-items{flex:1;overflow-y:auto;padding:4px 24px}
     .aka-cart-empty{color:#999;text-align:center;margin-top:40px;font-size:14px}
-    .aka-cart-item{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #f1f1f1}
-    .aka-cart-item img{width:190px;height:190px;object-fit:cover;border-radius:6px;flex-shrink:0}
-    .aka-cart-item-info{flex:1;min-width:0}
-    .aka-cart-item-info .name{font-size:20px;font-weight:600;color:#222;
-      display:block;margin-bottom:4px;line-height:1.3}
-    .aka-cart-item-info .price{font-size:20px;color:#c0392b;font-weight:600}
-    .aka-qty{display:flex;align-items:center;gap:8px;margin-top:6px}
-    .aka-qty button{width:50px;height:22px;border:1px solid #ddd;background:#fafafa;
-      border-radius:4px;cursor:pointer;font-size:13px;line-height:1}
-    .aka-qty span{font-size:13px;min-width:16px;text-align:center}
-    .aka-remove{background:none;border:none;color:#bbb;cursor:pointer;font-size:40px}
-    #aka-cart-footer{padding:16px 20px;border-top:1px solid #eee}
-    #aka-cart-total{display:flex;justify-content:space-between;font-size:25px;
-      margin-bottom:12px;font-weight:600;color:#222}
-    #aka-cart-total span:last-child{color:#c0392b}
-    #aka-checkout-btn{width:100%;padding:20px;background:#c0392b;color:#fff;
-      border:none;border-radius:6px;font-size:18px;font-weight:600;cursor:pointer}
+    .aka-cart-item{position:relative;display:flex;gap:18px;padding:20px 0;
+      border-bottom:1px dashed #ddd}
+    .aka-cart-item:last-child{border-bottom:none}
+    .aka-cart-item img{width:88px;height:88px;object-fit:cover;flex-shrink:0;
+      padding:4px;background:#fff;border:1px solid #e6e6e6;border-radius:2px}
+    .aka-cart-item-info{flex:1;min-width:0;display:flex;flex-direction:column;
+      justify-content:space-between;gap:12px}
+    .aka-cart-item-info .name{display:block;padding-right:28px;font-size:15px;
+      font-weight:600;line-height:1.45;color:#222}
+    .aka-cart-item-bottom{display:flex;justify-content:space-between;align-items:center}
+    .aka-cart-item-info .price{font-size:16px;font-weight:700;color:#111;white-space:nowrap}
+    .aka-qty{display:inline-flex;align-items:center;background:#f3f3f3;
+      border-radius:4px;padding:2px}
+    .aka-qty button{width:32px;height:32px;border:none;background:transparent;
+      border-radius:4px;cursor:pointer;font-size:18px;line-height:1;color:#333}
+    .aka-qty button:hover{background:#e6e6e6}
+    .aka-qty span{font-size:14px;font-weight:500;min-width:34px;text-align:center;color:#111}
+    .aka-remove{position:absolute;top:16px;right:0;background:none;border:none;
+      color:#333;cursor:pointer;font-size:20px;line-height:1;padding:4px}
+    .aka-remove:hover{color:#c0392b}
+    #aka-cart-footer{padding:20px 24px;border-top:1px solid #eee}
+    #aka-cart-total{display:flex;justify-content:space-between;align-items:center;
+      font-size:17px;margin-bottom:14px;font-weight:600;color:#222}
+    #aka-cart-total span:last-child{color:#c0392b;font-size:21px;font-weight:700}
+    #aka-checkout-btn{width:100%;padding:15px;background:#c0392b;color:#fff;
+      border:none;border-radius:6px;font-size:15px;font-weight:600;letter-spacing:.3px;cursor:pointer}
     #aka-checkout-btn:hover{background:#a5301f}
     .aka-cart-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
       background:#222;color:#fff;padding:10px 18px;border-radius:6px;font-size:13.5px;
@@ -211,14 +222,16 @@ function removeItem(id) {
           <img src="${p.image}" alt="${p.name}">
           <div class="aka-cart-item-info">
             <span class="name">${p.name}</span>
-            <span class="price">${p.price}</span>
-            <div class="aka-qty">
-              <button data-action="dec" data-id="${encodeURIComponent(p.id)}">−</button>
-              <span>${p.qty}</span>
-              <button data-action="inc" data-id="${encodeURIComponent(p.id)}">+</button>
+            <div class="aka-cart-item-bottom">
+              <div class="aka-qty">
+                <button data-action="dec" data-id="${encodeURIComponent(p.id)}">−</button>
+                <span>${p.qty}</span>
+                <button data-action="inc" data-id="${encodeURIComponent(p.id)}">+</button>
+              </div>
+              <span class="price">${formatPrice(parsePrice(p.price) * p.qty)}</span>
             </div>
           </div>
-          <button class="aka-remove" data-action="remove" data-id="${encodeURIComponent(p.id)}">🗑</button>
+          <button class="aka-remove" data-action="remove" data-id="${encodeURIComponent(p.id)}" aria-label="Xoá">✕</button>
         </div>`
         )
         .join("");

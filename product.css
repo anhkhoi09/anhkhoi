@@ -1,0 +1,137 @@
+/* =========================================================
+   AKA Shop – Trang chi tiết sản phẩm (product.html)
+   Đặt SAU index.css và theme.css
+   ========================================================= */
+
+.pd-crumb {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    padding: 22px 6% 0; font-size: 13px; color: var(--muted);
+}
+.pd-crumb a { color: var(--muted); transition: .2s; }
+.pd-crumb a:hover { color: var(--red); }
+.pd-crumb strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Khối chính: ảnh + thông tin ---------- */
+.pd {
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 48px; align-items: start; padding: 28px 6% 50px;
+}
+
+.pd-gallery { position: sticky; top: 96px; }
+.pd-main {
+    position: relative; background: #fff; border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; aspect-ratio: 1 / 1;
+}
+.pd-main img { width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+
+.pd-thumbs { display: flex; gap: 12px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+.pd-thumb {
+    flex: 0 0 84px; height: 84px; padding: 0; background: #fff; cursor: pointer;
+    border: 2px solid transparent; border-radius: 10px; overflow: hidden; transition: .2s;
+}
+.pd-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.pd-thumb:hover { border-color: #ccc; }
+.pd-thumb.on { border-color: var(--red); }
+
+/* ---------- Thông tin ---------- */
+.pd-title {
+    font-size: clamp(20px, 2.3vw, 27px); font-weight: 700; line-height: 1.35;
+    text-transform: uppercase; margin-bottom: 8px;
+}
+.pd-meta { display: flex; flex-wrap: wrap; font-size: 14px; color: #555; margin-bottom: 22px; }
+.pd-meta span { padding-right: 12px; margin-right: 12px; border-right: 1px solid #ccc; line-height: 1; }
+.pd-meta span:last-child { border-right: none; }
+.pd-meta strong { color: var(--ink); font-weight: 700; }
+
+.pd-row { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.pd-label { flex: 0 0 120px; font-size: 14px; font-weight: 600; color: #222; }
+
+.pd-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.pd-now { font-size: 30px; font-weight: 800; color: #f00; }
+.pd-old { font-size: 16px; color: #999; text-decoration: line-through; }
+
+.pd-opts { display: flex; flex-wrap: wrap; gap: 10px; }
+.pd-opt {
+    position: relative; min-width: 70px; padding: 10px 18px; background: #fff; cursor: pointer;
+    border: 1px solid #ddd; border-radius: 4px; font: inherit; font-size: 13px; color: #333; transition: .2s;
+}
+.pd-opt:hover { border-color: #888; }
+.pd-opt.on { border-color: #222; }
+.pd-opt.on::after {   /* góc đen + dấu tick ở góc phải trên */
+    content: ""; position: absolute; top: 0; right: 0; width: 0; height: 0;
+    border-top: 18px solid #111; border-left: 18px solid transparent;
+}
+.pd-opt.on::before {
+    content: "✓"; position: absolute; top: 0; right: 2px; z-index: 1;
+    color: #fff; font-size: 9px; line-height: 11px;
+}
+
+.pd-qty { display: inline-flex; background: #fff; border: 1px solid #eee; }
+.pd-qty button { width: 40px; height: 44px; border: none; background: #fff; font-size: 22px; color: #999; cursor: pointer; transition: .2s; }
+.pd-qty button:hover { color: #111; }
+.pd-qty input {
+    width: 52px; height: 44px; border: none; text-align: center; font: inherit; font-weight: 600;
+    outline: none; -moz-appearance: textfield; background: #fff;
+}
+.pd-qty input::-webkit-outer-spin-button,
+.pd-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.pd-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 6px; }
+.pd-actions button {
+    padding: 16px; border-radius: 4px; font: inherit; font-size: 14px; font-weight: 700;
+    letter-spacing: .5px; cursor: pointer; transition: .25s;
+}
+.pd-add { background: #fff; color: #555; border: 1px solid #ccc; }
+.pd-add:hover { border-color: #111; color: #111; }
+.pd-buy { background: #356ccf; color: #fff; border: 1px solid #356ccf; }
+.pd-buy:hover { background: #2756ad; border-color: #2756ad; }
+
+.pd-contact {
+    display: block; margin-top: 14px; padding: 17px; text-align: center; border-radius: 4px;
+    background: #111; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .8px; transition: .25s;
+}
+.pd-contact:hover { background: var(--red); }
+
+.pd-policy { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; font-size: 14px; }
+.pd-policy h4 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+.pd-policy p { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; color: #444; line-height: 1.4; }
+.pd-policy p span { flex: 0 0 26px; text-align: center; font-size: 18px; color: #888; }
+
+/* ---------- Mô tả ---------- */
+.pd-detail { margin: 0 6% 50px; padding: 32px 36px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); }
+.pd-detail h2 { font-size: 20px; font-weight: 800; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 3px solid var(--red); display: inline-block; }
+.pd-desc p { line-height: 1.8; color: #444; margin-bottom: 8px; }
+.pd-specs { margin-top: 18px; border-collapse: collapse; width: 100%; max-width: 520px; font-size: 14px; }
+.pd-specs th, .pd-specs td { text-align: left; padding: 10px 14px; border: 1px solid #eee; }
+.pd-specs th { width: 40%; background: #f7f7f9; font-weight: 600; }
+
+/* ---------- Liên quan ---------- */
+.pd-related { padding-top: 30px; }
+.pd-related .section-title { margin-bottom: 30px; }
+
+/* ---------- Phóng to ảnh ---------- */
+.pd-lightbox {
+    position: fixed; inset: 0; z-index: 1200; display: none; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.85); cursor: zoom-out; padding: 20px;
+}
+.pd-lightbox.open { display: flex; }
+.pd-lightbox img { width: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.pd-notfound { text-align: center; padding: 120px 20px; }
+.pd-notfound h1 { margin-bottom: 18px; }
+.pd-notfound a { color: var(--red); font-weight: 600; }
+
+@media (max-width: 900px) {
+    .pd { grid-template-columns: 1fr; gap: 26px; }
+    .pd-gallery { position: static; }
+    .pd-related .product-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .pd-crumb { padding: 16px 4% 0; }
+    .pd { padding: 18px 4% 36px; }
+    .pd-detail { margin: 0 4% 36px; padding: 22px 18px; }
+    .pd-now { font-size: 26px; }
+    .pd-label { flex-basis: 90px; }
+    .pd-policy { grid-template-columns: 1fr; gap: 8px; }
+    .pd-thumb { flex-basis: 68px; height: 68px; }
+}

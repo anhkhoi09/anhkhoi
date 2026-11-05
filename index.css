@@ -171,6 +171,7 @@ img {
 
 .login:hover {
     background: #2e01f7;
+    color: #fff;
 }
 
 
@@ -844,4 +845,3 @@ img {
 .video-container video::-webkit-media-controls-timeline {
     display: none !important;
 }
- 

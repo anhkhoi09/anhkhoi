@@ -1,6 +1,6 @@
 // ---------- PHẦN GẠCH CHÂN DƯỚI CHỮ KHI DI CHUYỂN TỚI PHẦN ĐÓ (index.html) ----------
 document.addEventListener("DOMContentLoaded", () => {
-    const navLinks = document.querySelectorAll(".navbar a");
+    const navLinks = document.querySelectorAll(".navbar > a, .navbar > .nav-dropdown > a");
     
     // Lấy tất cả các phần có ID tương ứng với thẻ menu
     const sections = document.querySelectorAll("section[id], footer[id]");
@@ -49,5 +49,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", activateMenuOnScroll);
     activateMenuOnScroll(); // Gọi ngay lần đầu
 });
-
-

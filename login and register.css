@@ -1,135 +1,176 @@
+/* =========================================================
+   AKA Shop – Trang Đăng nhập / Đăng ký
+   Cùng tông đen – đỏ với trang chủ
+   ========================================================= */
+
+:root {
+    --red: #e11d2e;
+    --red-dark: #b8141f;
+    --ink: #0d0d0f;
+    --muted: #7a7a85;
+}
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    
+    font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     min-height: 100vh;
-    
     display: flex;
-    
     justify-content: center;
-    
     align-items: center;
-    
-    background: linear-gradient(135deg, #0a2c55, #6477d6);
+    padding: 30px 0;
+    color: #16161a;
+    background:
+        radial-gradient(900px 500px at 85% 0%, rgba(225, 29, 46, 0.28), transparent 60%),
+        radial-gradient(700px 400px at 0% 100%, rgba(225, 29, 46, 0.14), transparent 60%),
+        linear-gradient(180deg, #0d0d0f, #17171b);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
 }
 
 .container {
     width: 100%;
-    
-    max-width: 430px;
-    
+    max-width: 460px;
     padding: 20px;
 }
 
-.Login-box {
-    background: white;
-    
-    padding: 35px;
-    
-    border-radius: 25px;
-
-    box-shadow: 0 15px 40px rgba(0, 4, 255, 0.911);
-
-    animation: fadeIn 0.5s ease;
+/* ---------- Logo phía trên ---------- */
+.auth-logo {
+    display: block;
+    text-align: center;
+    margin-bottom: 22px;
 }
 
+.auth-logo img {
+    display: inline-block;
+    width: auto;
+    height: 120px;
+    /* Nền đen của ảnh hoà vào nền trang, chỉ còn chữ trắng nổi lên */
+    mix-blend-mode: lighten;
+    object-fit: contain;
+}
+
+/* ---------- Khung form ---------- */
+.Login-box,
 .Register-box {
-    width: 500px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     background: #fff;
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-    box-sizing: border-box;
+    padding: 40px 36px 34px;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: fadeIn 0.5s ease;
 }
 
 h1 {
     text-align: center;
-    
-    color: #333;
-    
-    margin-bottom: 8px;
+    color: var(--ink);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
 }
 
+h1::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 4px;
+    margin: 12px auto 0;
+    border-radius: 4px;
+    background: var(--red);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin: 14px 0 26px;
+}
+
+/* ---------- Ô nhập ---------- */
 .input-group {
     margin-bottom: 18px;
 }
 
 .input-group label {
     display: block;
-    
     margin-bottom: 7px;
-    
-    color: #333;
-    
-    font-weight: bold;
+    color: #33333a;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .input-group input {
     width: 100%;
-    
-    padding: 13px 15px;
-
-    border: 1px solid #ddd;
-    
-    border-radius: 10px;
-
+    padding: 13px 16px;
+    border: 1.5px solid #e4e4ea;
+    border-radius: 12px;
+    background: #f7f7f9;
     outline: none;
-    
+    font-family: inherit;
     font-size: 15px;
+    color: var(--ink);
+    transition: 0.25s;
+}
 
-    transition: 0.3s;
+.input-group input::placeholder {
+    color: #a5a5b0;
 }
 
 .input-group input:focus {
-    border-color: #0f111a;
-
-    box-shadow: 0 0 0 3px rgba(30, 24, 24, 0.771);
+    border-color: var(--red);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(225, 29, 46, 0.12);
 }
 
+/* ---------- Nút ---------- */
 button {
     width: 100%;
-    
+    margin-top: 6px;
     padding: 14px;
-    
-    border-radius: 15px;
-
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    
-    color: white;
-
-    font-size: 20px;
-    
-    font-weight: bold;
-
+    border: none;
+    border-radius: 999px;
+    background: var(--red);
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    
-    transition: 0.4s;
+    transition: 0.25s;
 }
 
 button:hover {
-    transform: translateY(-4px);
-    
-    box-shadow: 0 8px 20px rgba(42, 69, 189, 0.3);
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(225, 29, 46, 0.4);
 }
 
+button:active {
+    transform: translateY(0);
+}
+
+/* ---------- Liên kết chuyển trang ---------- */
 .switch {
     text-align: center;
-    
-    margin-top: 22px;
-    
-    color: #777;
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
 }
 
 .switch span {
-    color: #667eea;
-    
-    font-weight: bold;
-    
+    color: var(--red);
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -137,17 +178,26 @@ button:hover {
     text-decoration: underline;
 }
 
+.back-home {
+    color: var(--muted);
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.back-home:hover {
+    color: var(--ink);
+}
+
 .message {
     text-align: center;
-    
     margin-top: 15px;
-    
     font-size: 14px;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
@@ -155,8 +205,18 @@ button:hover {
     }
 }
 
-@media (max-width: 1024px) {
-    .form-box {
-        padding: 250px 200px;
+@media (max-width: 480px) {
+    .container {
+        padding: 14px;
+    }
+
+    .Login-box,
+    .Register-box {
+        padding: 30px 22px 26px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
     }
 }
