@@ -125,6 +125,22 @@
     <div class="pd-lightbox" id="pd-lightbox"><img alt=""></div>
   `;
 
+  /* ----- Ảnh lỗi: ảnh nhỏ lỗi thì ẩn, ảnh chính lỗi thì dùng ảnh tạm ----- */
+  const PH = "data:image/svg+xml;utf8," + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><rect width="600" height="600" fill="#f1f1f1"/>' +
+    '<text x="300" y="300" font-family="Arial" font-size="40" font-weight="700" fill="#bbb" text-anchor="middle">' + (p.brand || "AKA Shop") + '</text>' +
+    '<text x="300" y="348" font-family="Arial" font-size="22" fill="#bbb" text-anchor="middle">Chưa có ảnh</text></svg>');
+  function fixImg(img) {
+    const bad = () => {
+      const th = img.closest(".pd-thumb");
+      if (th) { th.remove(); return; }          // ảnh nhỏ lỗi -> bỏ
+      if (img.src !== PH) img.src = PH;         // ảnh chính lỗi -> ảnh tạm
+    };
+    img.addEventListener("error", bad);
+    if (img.complete && img.naturalWidth === 0 && img.getAttribute("src")) bad();
+  }
+  root.querySelectorAll(".pd-main img, .pd-thumb img, .product-image img").forEach(fixImg);
+
   /* ----- Ảnh: bấm ảnh nhỏ để đổi ảnh chính, bấm ảnh chính để phóng to ----- */
   const mainImg = document.getElementById("pd-main-img");
   root.querySelectorAll(".pd-thumb").forEach((t) =>
@@ -135,6 +151,7 @@
   );
   const box = document.getElementById("pd-lightbox");
   mainImg.addEventListener("click", () => {
+    if (mainImg.src.startsWith("data:")) return;
     box.querySelector("img").src = mainImg.src;
     box.classList.add("open");
   });
