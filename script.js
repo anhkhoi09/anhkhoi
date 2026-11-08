@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Bật gạch chân cho Sản phẩm nếu ở phần diorama
-                    if (id === "diorama" && href === "#xe") {
+                    if ((id === "diorama" || id === "figure") && href === "#xe") {
                         link.classList.add("active");
                     }
                 });

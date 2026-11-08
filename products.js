@@ -144,5 +144,12 @@
   const q = new URLSearchParams(location.search).get("q");
   if (q && searchInput) searchInput.value = q;
 
+  // Nhận danh mục từ trang chủ (products.html?cat=figure) -> chỉ hiện đúng mục đó
+  const catParam = new URLSearchParams(location.search).get("cat");
+  if (catParam) {
+    const wanted = catParam.split(",");
+    document.querySelectorAll('input[name="cat"]').forEach((i) => (i.checked = wanted.includes(i.value)));
+  }
+
   apply();
 })();

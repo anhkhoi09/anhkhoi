@@ -6,7 +6,7 @@
   const id = new URLSearchParams(location.search).get("id");
   const p = (window.AKA_PRODUCTS || []).find((x) => x.id === id);
   const money = (n) => n.toLocaleString("vi-VN") + "đ";
-  const CAT = { xe: "Xe mô hình", diorama: "DIORAMA" };
+  const CAT = { xe: "Xe mô hình", diorama: "DIORAMA", figure: "FIGURE" };
 
   // Ô tìm kiếm trên header → chuyển sang trang "Tất cả sản phẩm"
   const si = document.getElementById("search-input");
@@ -200,6 +200,13 @@
     document.querySelector("a.cart").click();            // mở ngăn kéo giỏ hàng
     return true;
   }
-  document.getElementById("pd-add").addEventListener("click", addToCart);
-  document.getElementById("pd-buy").addEventListener("click", addToCart);
+  const addBtn = document.getElementById("pd-add");
+  const buyBtn = document.getElementById("pd-buy");
+  if (p.soldOut) {   // hết hàng: khóa nút mua
+    [addBtn, buyBtn].forEach((b) => { b.disabled = true; b.style.opacity = ".5"; b.style.cursor = "not-allowed"; });
+    buyBtn.textContent = "HẾT HÀNG";
+  } else {
+    addBtn.addEventListener("click", addToCart);
+    buyBtn.addEventListener("click", addToCart);
+  }
 })();
